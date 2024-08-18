@@ -16,7 +16,7 @@ namespace allergyAPI.Services
 			_httpClient = httpClient;
 		}
 
-		public async Task<string> GetPlantImageUrlAsync(string query)
+		public async Task<PlantInfoResponse?> GetPlantImageUrlAsync(string query)
 		{
 			try
 			{
@@ -25,8 +25,6 @@ namespace allergyAPI.Services
 				response.EnsureSuccessStatusCode();
 
 				var content = await response.Content.ReadAsStringAsync();
-				// Console.WriteLine($"Response content: {content}");
-
 				var plantApiResponse = JsonConvert.DeserializeObject<PlantApiResponse>(content);
 
 				if (plantApiResponse?.Data == null || !plantApiResponse.Data.Any())
@@ -43,8 +41,14 @@ namespace allergyAPI.Services
 					return null;
 				}
 
-				// Return the original_url from the DefaultImage
-				return plant.DefaultImage.OriginalUrl;
+				// Return an object containing all relevant information
+				return new PlantInfoResponse
+				{
+					CommonName = plant.CommonName,
+					ScientificName = plant.ScientificName,
+					Cycle = plant.Cycle,
+					ImageUrl = plant.DefaultImage.OriginalUrl
+				};
 			}
 			catch (HttpRequestException ex)
 			{
@@ -62,7 +66,17 @@ namespace allergyAPI.Services
 				return null;
 			}
 		}
+
 	}
+
+	public class PlantInfoResponse
+	{
+		public string? CommonName { get; set; }
+		public List<string>? ScientificName { get; set; }
+		public string? Cycle { get; set; }
+		public string? ImageUrl { get; set; }
+	}
+
 
 	public class PlantApiResponse
 	{

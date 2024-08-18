@@ -48,25 +48,23 @@ namespace allergyAPI.Controllers
             return Ok(forecast);
         }
 
-        [HttpGet("getplantpicture")]
-        public async Task<IActionResult> GetPlantPicture(string plant)
+        [HttpGet("getplantinfo")]
+        public async Task<IActionResult> GetPlantInfo(string plant)
         {
             if (string.IsNullOrEmpty(plant))
             {
                 return BadRequest(new { error = "The plant field is required." });
             }
 
-            var plantImageUrl = await _plantInfoService.GetPlantImageUrlAsync(plant);
+            var plantInfo = await _plantInfoService.GetPlantImageUrlAsync(plant);
 
-            if (plantImageUrl == null)
+            if (plantInfo == null)
             {
-                return NotFound(new { error = "Plant image URL not found." });
+                return NotFound(new { error = "Plant information not found." });
             }
 
-            return Ok(new
-            {
-                ImageUrl = plantImageUrl
-            });
+            return Ok(plantInfo);
         }
+
     }
 }
