@@ -1,5 +1,5 @@
-<div *ngFor="let allergen of allergens">
-	<div>
+<div class="card-container">
+	<div *ngFor="let allergen of allergens" class="card">
 		<h3>{{ allergen.displayName }}</h3>
 		<button (click)="viewDetails(allergen)">See Details</button>
 	</div>

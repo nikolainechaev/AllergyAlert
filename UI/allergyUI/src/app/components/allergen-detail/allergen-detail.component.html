@@ -1,8 +1,11 @@
-<div *ngIf="plantInfo">
+<div *ngIf="plantInfo" class="card">
 	<h2>{{ plantInfo.commonName }}</h2>
 	<p><strong>Scientific Names:</strong> {{ plantInfo.scientificName?.join(', ') }}</p>
 	<p><strong>Life Cycle:</strong> {{ plantInfo.cycle }}</p>
-	<div *ngIf="plantInfo.imageUrl">
+
+	<button (click)="showDetails = !showDetails">{{ showDetails ? 'Hide Details' : 'See Details' }}</button>
+
+	<div *ngIf="showDetails" class="details">
 		<img [src]="plantInfo.imageUrl" alt="{{ plantInfo.commonName }}">
 	</div>
 </div>

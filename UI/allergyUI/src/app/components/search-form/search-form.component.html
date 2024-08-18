@@ -1,15 +1,17 @@
-<form (ngSubmit)="onSubmit()">
-	<div>
-		<label for="city">City:</label>
-		<input type="text" id="city" [(ngModel)]="city" name="city" required>
-	</div>
-	<div>
-		<label for="state">State/Country:</label>
-		<input type="text" id="state" [(ngModel)]="state" name="state" required>
-	</div>
-	<div>
-		<label for="days">Days:</label>
-		<input type="number" id="days" [(ngModel)]="days" name="days" required>
-	</div>
-	<button type="submit">Get Forecast</button>
-</form>
+<div class="search-card">
+	<form (ngSubmit)="onSubmit()">
+		<div class="form-group">
+			<label for="city">City:</label>
+			<input id="city" type="text" [(ngModel)]="city" name="city" required>
+		</div>
+		<div class="form-group">
+			<label for="state">State/Country:</label>
+			<input id="state" type="text" [(ngModel)]="state" name="state" required>
+		</div>
+		<div class="form-group">
+			<label for="days">Days:</label>
+			<input id="days" type="number" [(ngModel)]="days" name="days" min="1" max="7" required>
+		</div>
+		<button type="submit">Get Forecast</button>
+	</form>
+</div>

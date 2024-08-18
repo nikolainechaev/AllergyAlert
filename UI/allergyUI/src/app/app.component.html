@@ -1,3 +1,6 @@
+<header class="main-header">
+  <h1>AllergyAlert</h1>
+</header>
 <app-search-form (search)="onSearch($event)"></app-search-form>
 <app-forecast-list [allergens]="allergens" (allergenSelected)="onAllergenSelected($event)"></app-forecast-list>
-<app-allergen-detail [allergen]="selectedAllergen"></app-allergen-detail>
+<app-allergen-detail [allergen]="selectedAllergen" [plantInfo]="plantInfo"></app-allergen-detail>

@@ -11,15 +11,13 @@ import { AllergyService } from '../../services/allergy.service';
 })
 export class AllergenDetailComponent implements OnChanges {
   @Input() allergen: any;
-  plantInfo: any = null;
+  @Input() plantInfo: any = null;
+  
+  showDetails = false;
 
   constructor(private allergyService: AllergyService) {}
 
   ngOnChanges() {
-    if (this.allergen) {
-      this.allergyService.getPlantInfo(this.allergen.displayName).subscribe(response => {
-        this.plantInfo = response;  // Store the entire response object
-      });
-    }
+    this.showDetails = false; // Reset the details view when allergen changes
   }
 }
