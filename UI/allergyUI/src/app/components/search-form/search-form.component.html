@@ -1,0 +1,15 @@
+<form (ngSubmit)="onSubmit()">
+	<div>
+		<label for="city">City:</label>
+		<input type="text" id="city" [(ngModel)]="city" name="city" required>
+	</div>
+	<div>
+		<label for="state">State/Country:</label>
+		<input type="text" id="state" [(ngModel)]="state" name="state" required>
+	</div>
+	<div>
+		<label for="days">Days:</label>
+		<input type="number" id="days" [(ngModel)]="days" name="days" required>
+	</div>
+	<button type="submit">Get Forecast</button>
+</form>

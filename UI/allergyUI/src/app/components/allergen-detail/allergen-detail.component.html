@@ -1,0 +1,6 @@
+<div *ngIf="allergen">
+	<h2>{{ allergen.displayName }}</h2>
+	<p><strong>Common Names:</strong> {{ allergen.commonName }}</p>
+	<p><strong>Scientific Names:</strong> {{ allergen.scientificName }}</p>
+	<img *ngIf="imageUrl" [src]="imageUrl" alt="{{ allergen.displayName }}">
+</div>

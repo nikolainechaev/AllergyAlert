@@ -1,0 +1,6 @@
+<div *ngFor="let allergen of allergens">
+	<div>
+		<h3>{{ allergen.displayName }}</h3>
+		<button (click)="viewDetails(allergen)">See Details</button>
+	</div>
+</div>
