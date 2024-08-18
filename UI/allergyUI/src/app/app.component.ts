@@ -1,13 +1,45 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { SearchFormComponent } from './components/search-form/search-form.component';
+import { ForecastListComponent } from './components/forecast-list/forecast-list.component';
+import { AllergenDetailComponent } from './components/allergen-detail/allergen-detail.component';
+import { AllergyService } from './services/allergy.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SearchFormComponent,
+    ForecastListComponent,
+    AllergenDetailComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'allergyUI';
+  allergens: any[] = [];
+  selectedAllergen: any = null;
+  plantImageUrl: string | null = null;
+
+  constructor(private allergyService: AllergyService) {}
+
+  onSearch({ city, state, days }: { city: string, state: string, days: number }) {
+    this.allergyService.getPollenForecast(city, state, days).subscribe((response: any) => {
+      if (response && response.dailyInfo) {
+        this.allergens = response.dailyInfo.flatMap((info: any) => info.plantInfo);
+      } else {
+        this.allergens = [];
+      }
+    });
+  }
+
+  onAllergenSelected(allergen: any) {
+    this.selectedAllergen = allergen;
+    this.allergyService.getPlantPicture(allergen.displayName).subscribe((response: any) => {
+      this.plantImageUrl = response.ImageUrl;
+    });
+  }
 }
