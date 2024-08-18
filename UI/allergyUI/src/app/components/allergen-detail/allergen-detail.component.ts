@@ -18,7 +18,7 @@ export class AllergenDetailComponent implements OnChanges {
   ngOnChanges() {
     if (this.allergen) {
       this.allergyService.getPlantPicture(this.allergen.displayName).subscribe(response => {
-        this.imageUrl = response.ImageUrl;  // Note the 'ImageUrl' key matches your backend response
+        this.imageUrl = response.imageUrl;  // Note the 'ImageUrl' key matches your backend response
       });
     }
   }
