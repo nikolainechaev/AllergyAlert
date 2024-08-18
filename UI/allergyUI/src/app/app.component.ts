@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
 export class AppComponent {
   allergens: any[] = [];
   selectedAllergen: any = null;
-  plantImageUrl: string | null = null;
+  plantInfo: any = null;
 
   constructor(private allergyService: AllergyService) {}
 
@@ -38,8 +38,8 @@ export class AppComponent {
 
   onAllergenSelected(allergen: any) {
     this.selectedAllergen = allergen;
-    this.allergyService.getPlantPicture(allergen.displayName).subscribe((response: any) => {
-      this.plantImageUrl = response.ImageUrl;
+    this.allergyService.getPlantInfo(allergen.displayName).subscribe((response: any) => {
+      this.plantInfo = response;  // Store the entire response object
     });
   }
 }

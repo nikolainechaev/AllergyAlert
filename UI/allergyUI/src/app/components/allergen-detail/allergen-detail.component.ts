@@ -11,14 +11,14 @@ import { AllergyService } from '../../services/allergy.service';
 })
 export class AllergenDetailComponent implements OnChanges {
   @Input() allergen: any;
-  imageUrl: string | null = null;
+  plantInfo: any = null;
 
   constructor(private allergyService: AllergyService) {}
 
   ngOnChanges() {
     if (this.allergen) {
-      this.allergyService.getPlantPicture(this.allergen.displayName).subscribe(response => {
-        this.imageUrl = response.imageUrl;  // Note the 'ImageUrl' key matches your backend response
+      this.allergyService.getPlantInfo(this.allergen.displayName).subscribe(response => {
+        this.plantInfo = response;  // Store the entire response object
       });
     }
   }

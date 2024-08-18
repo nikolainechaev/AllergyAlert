@@ -16,7 +16,7 @@ export class AllergyService {
     });
   }
 
-  getPlantPicture(plant: string): Observable<any> {
+  getPlantInfo(plant: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/getplantinfo`, {
       params: { plant }
     });
