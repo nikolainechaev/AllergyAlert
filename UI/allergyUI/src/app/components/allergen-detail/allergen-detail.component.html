@@ -1,11 +1,14 @@
-<div *ngIf="plantInfo" class="card">
-	<h2>{{ plantInfo.commonName }}</h2>
-	<p><strong>Scientific Names:</strong> {{ plantInfo.scientificName?.join(', ') }}</p>
-	<p><strong>Life Cycle:</strong> {{ plantInfo.cycle }}</p>
+<div class="card-container">
+	<div *ngIf="plantInfo" class="card">
+		<!-- X Button in the top-right corner -->
+		<button class="close-button" (click)="onHideDetails()" title="Back to All Allergens">X</button>
 
-	<button (click)="showDetails = !showDetails">{{ showDetails ? 'Hide Details' : 'See Details' }}</button>
+		<h2>{{ plantInfo.commonName }}</h2>
+		<p><strong>Scientific Names:</strong> {{ plantInfo.scientificName?.join(', ') }}</p>
+		<p><strong>Life Cycle:</strong> {{ plantInfo.cycle }}</p>
 
-	<div *ngIf="showDetails" class="details">
-		<img [src]="plantInfo.imageUrl" alt="{{ plantInfo.commonName }}">
+		<div class="details">
+			<img [src]="plantInfo.imageUrl" alt="{{ plantInfo.commonName }}">
+		</div>
 	</div>
 </div>

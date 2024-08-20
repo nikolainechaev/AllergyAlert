@@ -2,5 +2,12 @@
   <h1>AllergyAlert</h1>
 </header>
 <app-search-form (search)="onSearch($event)"></app-search-form>
-<app-forecast-list [allergens]="allergens" (allergenSelected)="onAllergenSelected($event)"></app-forecast-list>
-<app-allergen-detail [allergen]="selectedAllergen" [plantInfo]="plantInfo"></app-allergen-detail>
+
+<div *ngIf="!showDetailsView">
+  <app-forecast-list [allergens]="allergens" (allergenSelected)="onAllergenSelected($event)"></app-forecast-list>
+</div>
+
+<div *ngIf="showDetailsView">
+  <app-allergen-detail [allergen]="selectedAllergen" [plantInfo]="plantInfo"
+    (hideDetails)="onHideDetails()"></app-allergen-detail>
+</div>

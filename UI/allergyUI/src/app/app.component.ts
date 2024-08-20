@@ -23,6 +23,7 @@ export class AppComponent {
   allergens: any[] = [];
   selectedAllergen: any = null;
   plantInfo: any = null;
+  showDetailsView = false;
 
   constructor(private allergyService: AllergyService) {}
 
@@ -38,8 +39,13 @@ export class AppComponent {
 
   onAllergenSelected(allergen: any) {
     this.selectedAllergen = allergen;
+    this.showDetailsView = true;
     this.allergyService.getPlantInfo(allergen.displayName).subscribe((response: any) => {
-      this.plantInfo = response;  // Store the entire response object
+      this.plantInfo = response;
     });
+  }
+
+  onHideDetails() {
+    this.showDetailsView = false;
   }
 }
