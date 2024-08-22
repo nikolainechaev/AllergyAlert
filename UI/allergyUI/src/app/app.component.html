@@ -4,6 +4,7 @@
 <app-search-form (search)="onSearch($event)"></app-search-form>
 
 <div *ngIf="!showDetailsView">
+  <h2 *ngIf="headerText">{{ headerText }}</h2>
   <app-forecast-list [allergens]="allergens" (allergenSelected)="onAllergenSelected($event)"></app-forecast-list>
 </div>
 

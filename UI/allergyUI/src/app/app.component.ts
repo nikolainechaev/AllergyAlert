@@ -24,17 +24,44 @@ export class AppComponent {
   selectedAllergen: any = null;
   plantInfo: any = null;
   showDetailsView = false;
+  headerText: string = '';
 
   constructor(private allergyService: AllergyService) {}
 
   onSearch({ city, state, days }: { city: string, state: string, days: number }) {
+    // Reset data before making the API call
+    this.allergens = [];
+    this.selectedAllergen = null;
+    this.plantInfo = null;
+    this.headerText = '';
+
     this.allergyService.getPollenForecast(city, state, days).subscribe((response: any) => {
       if (response && response.dailyInfo) {
-        this.allergens = response.dailyInfo.flatMap((info: any) => info.plantInfo);
+        this.allergens = this.removeDuplicates(response.dailyInfo.flatMap((info: any) => info.plantInfo));
+        this.headerText = this.generateHeaderText(city, days);
       } else {
         this.allergens = [];
+        this.headerText = 'No active allergens found.';
       }
     });
+  }
+
+  generateHeaderText(city: string, days: number): string {
+    return `This is the list of active allergens near the region ${city} for the next ${days} days:`;
+  }
+
+  removeDuplicates(allergens: any[]): any[] {
+    const uniqueAllergens: any[] = [];
+    const allergenNames = new Set();
+
+    allergens.forEach(allergen => {
+      if (!allergenNames.has(allergen.displayName)) {
+        allergenNames.add(allergen.displayName);
+        uniqueAllergens.push(allergen);
+      }
+    });
+
+    return uniqueAllergens;
   }
 
   onAllergenSelected(allergen: any) {
