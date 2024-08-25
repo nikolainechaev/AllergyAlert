@@ -1,7 +1,7 @@
-# AllergyAlert
+# :face_with_spiral_eyes: :sneezing_face: AllergyAlert :smiling_face_with_tear: :face_exhaling: 
 
 ## AllergyAlert is a web application designed to help users monitor allergens in their region. The app provides a list of active allergens based on the user's selected location and the number of days for the forecast. Users can view details about specific allergens, including images and additional information.
-## Technologies Used
+## Technologies Used :electric_plug:
 **Frontend**: Angular (Standalone Components, Angular CLI)
 
 **Backend**: ASP.NET Core Web API
@@ -20,7 +20,7 @@
 https://github.com/user-attachments/assets/6fdbc926-069a-4c6f-829e-c095d5166996
 
 
-## Installation
+## Installation :floppy_disk:
 Follow these steps to run the application locally:
 
 ### Prerequisites
