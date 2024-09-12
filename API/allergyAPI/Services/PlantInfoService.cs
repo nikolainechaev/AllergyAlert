@@ -41,7 +41,6 @@ namespace allergyAPI.Services
 					return null;
 				}
 
-				// Return an object containing all relevant information
 				return new PlantInfoResponse
 				{
 					CommonName = plant.CommonName,

@@ -2,11 +2,9 @@ using allergyAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Add your custom services for the allergy forecast app
 builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
@@ -32,7 +30,6 @@ builder.Services.AddHttpClient<PlantInfoService>();
 var app = builder.Build();
 app.UseCors("SpecificOrigins");
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -43,13 +40,8 @@ else
     app.UseHttpsRedirection();
 }
 
-// Uncomment if you want to enforce HTTPS in all environments
-// app.UseHttpsRedirection();
-
-// Map the controller routes
 app.MapControllers();
 
-// Example of your existing code, for reference
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"

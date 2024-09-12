@@ -1,4 +1,3 @@
-// Services/PollenForecastService.cs
 using Newtonsoft.Json;
 
 public class PollenForecastService

@@ -3,4 +3,3 @@
 GET {{allergyAPI_HostAddress}}/weatherforecast/
 Accept: application/json
 
-###

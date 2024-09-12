@@ -24,7 +24,6 @@ namespace allergyAPI.Services
 				var response = await _httpClient.GetStringAsync($"https://api.api-ninjas.com/v1/geocoding?city={city}&country={country}&x-api-key={ApiKey}");
 				var geocodingResponses = JsonConvert.DeserializeObject<List<GeocodingResult>>(response);
 
-				// Make sure geocodingResponses is a list before calling FirstOrDefault
 				return geocodingResponses?.FirstOrDefault();
 			}
 			catch (HttpRequestException e)
