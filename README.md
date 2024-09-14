@@ -1,12 +1,19 @@
 # :face_with_spiral_eyes: :sneezing_face: AllergyAlert :smiling_face_with_tear: :face_exhaling: 
 
 ## AllergyAlert is a web application designed to help users monitor allergens in their region. The app provides a list of active allergens based on the user's selected location and the number of days for the forecast. Users can view details about specific allergens, including images and additional information.
-## Technologies Used :electric_plug:
+
+## 🚀 Performance Enhancement:
+Caching: The application leverages <ins>**Microsoft.AspNetCore.ResponseCaching**</ins> to implement a 2-minute response caching mechanism for certain API endpoints, significantly improving performance on repeated calls. The first call usually takes around 1-1.5 seconds, while the second call benefits from caching, taking about 2 milliseconds. It will help to reduce not just latency for users, but als optimize resource usage, helping to lower operational costs.
+<img width="790" alt="First request timing" src="https://github.com/user-attachments/assets/467dc25e-126f-4729-a09e-964edf5bdd5f">
+<img width="792" alt="Second request timing (from cache)" src="https://github.com/user-attachments/assets/deb0ff58-0535-4aa6-856f-6fe46934641c">
+
+
+## 🔌Technologies Used
 **Frontend**: Angular (Standalone Components, Angular CLI)
 
 **Backend**: ASP.NET Core Web API
 
-**Public APIs**:
+**🌍Public APIs**:
 
 - **Geocoding API**: 
   https://api-ninjas.com/api/geocoding
