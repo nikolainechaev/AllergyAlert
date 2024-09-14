@@ -2,8 +2,9 @@
 
 ## AllergyAlert is a web application designed to help users monitor allergens in their region. The app provides a list of active allergens based on the user's selected location and the number of days for the forecast. Users can view details about specific allergens, including images and additional information.
 
-## 🚀 Performance Enhancement:
-Caching: The application leverages <ins>**Microsoft.AspNetCore.ResponseCaching**</ins> to implement a 2-minute response caching mechanism for certain API endpoints, significantly improving performance on repeated calls. The first call usually takes around 1-1.5 seconds, while the second call benefits from caching, taking about 2 milliseconds. It will help to reduce not just latency for users, but als optimize resource usage, helping to lower operational costs.
+## 🚀 Performance Enhancement (September 2024 Update):
+Caching: The application leverages <ins>**Microsoft.AspNetCore.ResponseCaching**</ins> to implement a 2-minute response caching mechanism for certain API endpoints, significantly improving performance on repeated calls. The first call usually takes around 1-1.5 seconds, while the second call benefits from caching, taking about 2 milliseconds. This update not only reduces latency for users, but also optimizes resource usage, leading to lower operational costs.
+
 <img width="790" alt="First request timing" src="https://github.com/user-attachments/assets/467dc25e-126f-4729-a09e-964edf5bdd5f">
 <img width="792" alt="Second request timing (from cache)" src="https://github.com/user-attachments/assets/deb0ff58-0535-4aa6-856f-6fe46934641c">
 
