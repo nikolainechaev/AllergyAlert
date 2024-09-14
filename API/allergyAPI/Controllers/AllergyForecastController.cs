@@ -49,6 +49,7 @@ namespace allergyAPI.Controllers
         }
 
         [HttpGet("getplantinfo")]
+        [ResponseCache(Duration = 120)]
         public async Task<IActionResult> GetPlantInfo(string plant)
         {
             if (string.IsNullOrEmpty(plant))

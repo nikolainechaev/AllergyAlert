@@ -1,10 +1,10 @@
 using allergyAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
+// 1st Section: Middleware
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddResponseCaching();
 builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
@@ -17,7 +17,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-
+// 1.5st Section: My personal injections
 builder.Services.AddHttpClient<GeocodingService>(client =>
 {
     var ApiKey = Environment.GetEnvironmentVariable("GEOCODING_ENV") ?? throw new InvalidOperationException("API key not set.");
@@ -27,6 +27,7 @@ builder.Services.AddHttpClient<GeocodingService>(client =>
 builder.Services.AddHttpClient<PollenForecastService>();
 builder.Services.AddHttpClient<PlantInfoService>();
 
+// 2nd Section: Apply dependencies and Build
 var app = builder.Build();
 app.UseCors("SpecificOrigins");
 
@@ -39,32 +40,8 @@ else
 {
     app.UseHttpsRedirection();
 }
-
+app.UseResponseCaching();
 app.MapControllers();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
+// 3rd Section: Run web server
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
