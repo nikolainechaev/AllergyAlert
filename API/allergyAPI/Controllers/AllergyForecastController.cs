@@ -27,29 +27,17 @@ namespace allergyAPI.Controllers
                 return BadRequest(new { error = "City and country are required." });
             }
 
-            // Get geocoding data
-            var geocodingData = await _geocodingService.GetGeocodingDataAsync(city, country);
-            if (geocodingData == null)
-            {
-                return NotFound(new { error = "Geocoding data not found." });
-            }
-
-            var latitude = geocodingData.Latitude;
-            var longitude = geocodingData.Longitude;
-
-            // Get pollen forecast data
-            var forecast = await _pollenForecastService.GetPollenForecastAsync(latitude, longitude, days);
+            var forecast = await _pollenForecastService.GetForecastAsync(city, country, days);
 
             if (forecast == null)
             {
-                return NotFound(new { error = "Pollen forecast data not found." });
+                return NotFound(new { error = "Forecast data not found." });
             }
 
             return Ok(forecast);
         }
 
         [HttpGet("getplantinfo")]
-        [ResponseCache(Duration = 120)]
         public async Task<IActionResult> GetPlantInfo(string plant)
         {
             if (string.IsNullOrEmpty(plant))
@@ -57,7 +45,7 @@ namespace allergyAPI.Controllers
                 return BadRequest(new { error = "The plant field is required." });
             }
 
-            var plantInfo = await _plantInfoService.GetPlantImageUrlAsync(plant);
+            var plantInfo = await _plantInfoService.GetPlantInfoAsync(plant);
 
             if (plantInfo == null)
             {
@@ -66,6 +54,5 @@ namespace allergyAPI.Controllers
 
             return Ok(plantInfo);
         }
-
     }
 }
