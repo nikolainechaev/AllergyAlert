@@ -8,11 +8,11 @@ namespace allergyAPI.Controllers
     [ApiController]
     public class AllergyForecastController : ControllerBase
     {
-        private readonly GeocodingService _geocodingService;
-        private readonly PollenForecastService _pollenForecastService;
-        private readonly PlantInfoService _plantInfoService;
+        private readonly IGeocodingService _geocodingService;
+        private readonly IPollenForecastService _pollenForecastService;
+        private readonly IPlantInfoService _plantInfoService;
 
-        public AllergyForecastController(GeocodingService geocodingService, PollenForecastService pollenForecastService, PlantInfoService plantInfoService)
+        public AllergyForecastController(IGeocodingService geocodingService, IPollenForecastService pollenForecastService, IPlantInfoService plantInfoService)
         {
             _geocodingService = geocodingService;
             _pollenForecastService = pollenForecastService;

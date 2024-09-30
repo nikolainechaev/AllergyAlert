@@ -1,12 +1,12 @@
 using allergyAPI.Services;
 using Newtonsoft.Json;
 
-public class PollenForecastService
+public class PollenForecastService : IPollenForecastService
 {
 	private readonly HttpClient _httpClient;
-	private readonly GeocodingService _geocodingService;
+	private readonly IGeocodingService _geocodingService;
 
-	public PollenForecastService(HttpClient httpClient, GeocodingService geocodingService)
+	public PollenForecastService(HttpClient httpClient, IGeocodingService geocodingService)
 	{
 		_httpClient = httpClient;
 		_geocodingService = geocodingService;

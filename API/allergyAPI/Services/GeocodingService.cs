@@ -2,13 +2,10 @@ using System.Net.Http;
 using allergyAPI.Models;
 using allergyAPI.Services;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace allergyAPI.Services
 {
-	public class GeocodingService
+	public class GeocodingService : IGeocodingService
 	{
 		private readonly HttpClient _httpClient;
 
@@ -36,6 +33,11 @@ namespace allergyAPI.Services
 				Console.WriteLine($"JSON error: {e.Message}");
 				return null;
 			}
+		}
+
+		public Task<GeocodingResult?> GetGeocodingResult(string city, string country)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

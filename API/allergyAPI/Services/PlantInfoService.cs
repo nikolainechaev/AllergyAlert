@@ -5,7 +5,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-public class PlantInfoService
+public class PlantInfoService : IPlantInfoService
 {
 	private readonly HttpClient _httpClient;
 	private readonly IMemoryCache _memoryCache;
@@ -60,5 +60,10 @@ public class PlantInfoService
 			Cycle = plant.Cycle,
 			ImageUrl = plant.DefaultImage?.OriginalUrl
 		};
+	}
+
+	Task<PlantInfoResponse?> IPlantInfoService.FetchPlantInfoFromApiAsync(string plantName)
+	{
+		throw new NotImplementedException();
 	}
 }

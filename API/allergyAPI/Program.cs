@@ -19,14 +19,14 @@ builder.Services.AddCors(options =>
 });
 
 // 1.5st Section: My personal injections
-builder.Services.AddHttpClient<GeocodingService>(client =>
+builder.Services.AddHttpClient<IGeocodingService, GeocodingService>(client =>
 {
     var ApiKey = Environment.GetEnvironmentVariable("GEOCODING_ENV") ?? throw new InvalidOperationException("API key not set.");
     client.DefaultRequestHeaders.Add("x-api-key", ApiKey);
 
 });
-builder.Services.AddHttpClient<PollenForecastService>();
-builder.Services.AddHttpClient<PlantInfoService>();
+builder.Services.AddHttpClient<IPollenForecastService, PollenForecastService>();
+builder.Services.AddHttpClient<IPlantInfoService, PlantInfoService>();
 
 // 2nd Section: Apply dependencies and Build
 var app = builder.Build();
