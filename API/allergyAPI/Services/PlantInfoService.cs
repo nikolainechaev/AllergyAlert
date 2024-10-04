@@ -9,7 +9,7 @@ public class PlantInfoService : IPlantInfoService
 {
 	private readonly HttpClient _httpClient;
 	private readonly IMemoryCache _memoryCache;
-	private static readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(30); // Customize cache duration
+	// private static readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(30); // Customize cache duration
 
 	public PlantInfoService(HttpClient httpClient, IMemoryCache memoryCache)
 	{
@@ -19,20 +19,20 @@ public class PlantInfoService : IPlantInfoService
 
 	public async Task<PlantInfoResponse?> GetPlantInfoAsync(string plantName)
 	{
-		// Try to get the plant info from the cache
-		if (_memoryCache.TryGetValue(plantName, out PlantInfoResponse cachedPlantInfo))
-		{
-			return cachedPlantInfo;
-		}
+		// // Try to get the plant info from the cache
+		// if (_memoryCache.TryGetValue(plantName, out PlantInfoResponse cachedPlantInfo))
+		// {
+		// 	return cachedPlantInfo;
+		// }
 
 		// If not in cache, fetch from API
 		var plantInfo = await FetchPlantInfoFromApiAsync(plantName);
 
-		if (plantInfo != null)
-		{
-			// Cache the plant info
-			_memoryCache.Set(plantName, plantInfo, CacheDuration);
-		}
+		// if (plantInfo != null)
+		// {
+		// 	// Cache the plant info
+		// 	_memoryCache.Set(plantName, plantInfo, CacheDuration);
+		// }
 
 		return plantInfo;
 	}

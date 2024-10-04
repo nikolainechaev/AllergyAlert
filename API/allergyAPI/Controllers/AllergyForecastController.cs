@@ -19,7 +19,7 @@ namespace allergyAPI.Controllers
             _plantInfoService = plantInfoService;
         }
 
-        [HttpGet("getforecast")]
+        [HttpGet("forecast")]
         public async Task<IActionResult> GetForecast(string city, int days, string country)
         {
             if (string.IsNullOrEmpty(city) || string.IsNullOrEmpty(country))
@@ -37,7 +37,7 @@ namespace allergyAPI.Controllers
             return Ok(forecast);
         }
 
-        [HttpGet("getplantinfo")]
+        [HttpGet("plant/{plant}")]
         public async Task<IActionResult> GetPlantInfo(string plant)
         {
             if (string.IsNullOrEmpty(plant))

@@ -11,13 +11,13 @@ export class AllergyService {
   constructor(private http: HttpClient) {}
 
   getPollenForecast(city: string, country: string, days: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/getforecast`, {
+    return this.http.get(`${this.apiUrl}/forecast`, {
       params: { city, country, days }
     });
   }
 
   getPlantInfo(plant: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/getplantinfo`, {
+    return this.http.get(`${this.apiUrl}/plant/${plant}`, {
       params: { plant }
     });
   }
